@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		142C6FD31DF205F100C5D269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C6FD21DF205F100C5D269 /* AppDelegate.swift */; };
-		142C6FD51DF205F100C5D269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C6FD41DF205F100C5D269 /* ViewController.swift */; };
+		142C6FD51DF205F100C5D269 /* RaceQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C6FD41DF205F100C5D269 /* RaceQueueViewController.swift */; };
 		142C6FD81DF205F100C5D269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142C6FD61DF205F100C5D269 /* Main.storyboard */; };
 		142C6FDA1DF205F100C5D269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142C6FD91DF205F100C5D269 /* Assets.xcassets */; };
 		142C6FDD1DF205F100C5D269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142C6FDB1DF205F100C5D269 /* LaunchScreen.storyboard */; };
+		143C84E11DF20DF8004285E2 /* RaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		142C6FCF1DF205F100C5D269 /* RRP Race Queue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RRP Race Queue.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		142C6FD21DF205F100C5D269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		142C6FD41DF205F100C5D269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		142C6FD41DF205F100C5D269 /* RaceQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceQueueViewController.swift; sourceTree = "<group>"; };
 		142C6FD71DF205F100C5D269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		142C6FD91DF205F100C5D269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		142C6FDC1DF205F100C5D269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		142C6FDE1DF205F100C5D269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				142C6FD21DF205F100C5D269 /* AppDelegate.swift */,
-				142C6FD41DF205F100C5D269 /* ViewController.swift */,
+				142C6FD41DF205F100C5D269 /* RaceQueueViewController.swift */,
+				143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */,
 				142C6FD61DF205F100C5D269 /* Main.storyboard */,
 				142C6FD91DF205F100C5D269 /* Assets.xcassets */,
 				142C6FDB1DF205F100C5D269 /* LaunchScreen.storyboard */,
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				142C6FD51DF205F100C5D269 /* ViewController.swift in Sources */,
+				143C84E11DF20DF8004285E2 /* RaceDetailViewController.swift in Sources */,
+				142C6FD51DF205F100C5D269 /* RaceQueueViewController.swift in Sources */,
 				142C6FD31DF205F100C5D269 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,10 +267,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BWM5EXN4LQ;
 				INFOPLIST_FILE = "RRP Race Queue/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.racingtech.RRP-Race-Queue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -276,10 +282,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BWM5EXN4LQ;
 				INFOPLIST_FILE = "RRP Race Queue/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.racingtech.RRP-Race-Queue";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -302,6 +310,7 @@
 				142C6FE31DF205F100C5D269 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

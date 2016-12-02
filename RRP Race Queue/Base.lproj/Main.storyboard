@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zaU-jc-dBM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Race Queue-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RaceQueueViewController" customModule="RRP_Race_Queue" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,95 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-U2-czn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="raceCell" id="4PT-ra-Y5F">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PT-ra-Y5F" id="Hhc-eL-2tV">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="OcC-IC-bwm" kind="show" id="8RP-xY-udw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="JIS-Ah-tj4"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="k89-pd-7Z1"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iJ5-3w-kV5">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="vuR-mr-RdL"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Le Mans"/>
+                                    <segment title="Monaco"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iJ5-3w-kV5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="925-Oc-9ns"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="aMM-U2-czn" secondAttribute="bottom" id="RTd-hy-bl8"/>
+                            <constraint firstItem="iJ5-3w-kV5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="XSR-PZ-Zdz"/>
+                            <constraint firstItem="aMM-U2-czn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hI6-Vf-6Au"/>
+                            <constraint firstAttribute="trailing" secondItem="aMM-U2-czn" secondAttribute="trailing" id="kmk-jE-cgR"/>
+                            <constraint firstItem="aMM-U2-czn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pLp-Qz-0S5"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Race Queue" id="ddz-Dz-3qm">
+                        <barButtonItem key="rightBarButtonItem" tag="1" image="Circled User Male Filled-25" id="so0-4h-DYE"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1268" y="107.49625187406298"/>
+        </scene>
+        <!--Race Detail View Controller-->
+        <scene sceneID="tPS-5J-XTK">
+            <objects>
+                <viewController id="OcC-IC-bwm" customClass="RaceDetailViewController" customModule="RRP_Race_Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cev-up-z7J"/>
+                        <viewControllerLayoutGuide type="bottom" id="XRT-cw-PV8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XFg-JO-11W">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q6A-M4-lK5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1972" y="107"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L8s-FI-RPa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zaU-jc-dBM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eJm-PC-hq3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NUF-Jx-lHS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VD8-D2-4pi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="564" y="107"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circled User Male Filled-25" width="25" height="25"/>
+    </resources>
 </document>
