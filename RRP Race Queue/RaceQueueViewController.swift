@@ -13,6 +13,9 @@ class RaceQueueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NetworkController.sharedInstance.getUpcomingFor(track: 1, completion: { (racers) in
+                print("Stuff")
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
