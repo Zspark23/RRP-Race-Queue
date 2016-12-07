@@ -15,6 +15,7 @@ class NetworkController {
     static let sharedInstance = NetworkController()
     private init() {}
     
+    
     private func baseURL() -> String {
         return "http://aisbaltimore.clubspeedtiming.com/api/index.php/"
     }
@@ -23,18 +24,30 @@ class NetworkController {
         return "\(baseURL())races/\(when).json?track=\(track)&key=\(apiKey)"
     }
     
-    func getUpcomingFor(track: Int, completion: @escaping ([Racer]) -> Void) {
+    func getRacersUpcomingRaceFor(track: Int, completion: @escaping ([Racer]?) -> Void) {
         let url = URL(string: constructURLString(when: "next", track: track))
-        performDataTask(url: url!, completion: { (racers) in
-            completion(racers)
-        })
         
+        performDataTask(url: url!, completion: { (json) in
+            if let data = json {
+                var racerArray: [Racer] = []
+                if let nextRace = data["race"] as? [String : Any] {
+                    for racers in nextRace["racers"] as! [Any] {
+                        racerArray.append(Racer(dictionary: racers as! [String : Any]))
+                    }
+                    completion(racerArray)
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        })
     }
     
-    private func performDataTask(url: URL, completion: @escaping (([Racer]) -> Void)) {
+    // Performs the API call
+    private func performDataTask(url: URL, completion: @escaping (([String : Any]?) -> Void)) {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        var racerArray: [Racer] = []
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
             
@@ -44,14 +57,9 @@ class NetworkController {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String : Any]
                     {
-                        if let race = json["race"] as? [String : Any] {
-                            for racer in race["racers"] as! [Any] {
-                                racerArray.append(Racer(dictionary: racer as! [String : Any]))
-                            }
-                            completion(racerArray)
-                        } else {
-                            completion([])
-                        }
+                        completion(json)
+                    } else {
+                        completion(nil)
                     }
                 } catch {
                     print("error in JSONSerialization")

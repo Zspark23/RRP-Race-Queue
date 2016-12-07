@@ -21,6 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iJ5-3w-kV5">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="vuR-mr-RdL"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Le Mans"/>
+                                    <segment title="Monaco"/>
+                                </segments>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-U2-czn">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,16 +52,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="k89-pd-7Z1"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iJ5-3w-kV5">
-                                <rect key="frame" x="16" y="72" width="343" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="vuR-mr-RdL"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Le Mans"/>
-                                    <segment title="Monaco"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -91,7 +91,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jd9-KD-AVl" id="EBL-Tx-dFC">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -111,6 +111,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="raceDetailsTableView" destination="UJe-X3-SF2" id="ekx-EO-NyO"/>
                         <segue destination="oac-Bz-c8u" kind="presentation" identifier="viewRacerDetailsSegue" id="yiq-fO-SwG"/>
                     </connections>
                 </viewController>

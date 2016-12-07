@@ -69,4 +69,8 @@ class Racer {
             self.lastLap = nil
         }
     }
+    
+    func fullName() -> String? {
+        return "\(firstName!) \(lastName!)"
+    }
 }
