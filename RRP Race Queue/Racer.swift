@@ -21,8 +21,20 @@ class Racer {
     let lastLap: String?
     let createdAtDate: String?
     
+    init() {
+        racerId = nil
+        finishPosition = nil
+        kartNum = nil
+        racerName = nil
+        firstName = nil
+        lastName = nil
+        rpm = nil
+        fastestLap = nil
+        lastLap = nil
+        createdAtDate = nil
+    }
+    
     init(dictionary: [String : Any]) {
-        
         racerId = dictionary["id"] as? String ?? nil
         finishPosition = dictionary["position"] as? String ?? nil
         kartNum = dictionary["kart_num"] as? String ?? nil
@@ -33,7 +45,6 @@ class Racer {
         fastestLap = dictionary["fastest_lap_time"] as? String ?? nil
         lastLap = dictionary["last_lap_time"] as? String ?? nil
         createdAtDate = dictionary["created_at"] as? String ?? nil
-        
     }
     
     func fullName() -> String? {

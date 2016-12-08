@@ -10,6 +10,8 @@ import UIKit
 
 class RaceQueueViewController: UIViewController {
     
+    @IBOutlet weak var trackSelectSegmentedControl: UISegmentedControl!
+    
     var me: Racer?
 
     override func viewDidLoad() {

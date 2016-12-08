@@ -35,18 +35,12 @@ class NetworkController {
     // MARK: Racer acquisition methods
     
     // Gets all racers in following race for specified track
-    func getRacersUpcomingRaceFor(track: Int, completion: @escaping ([Racer]?) -> Void) {
+    func getRacersUpcomingRaceFor(track: Int, completion: @escaping ([Racer]) -> Void) {
         let url = constructURL(when: "next", track: track)
         
         performDataTask(url: url, completion: { (json) in
             if let data = json {
-                var racerArray: [Racer]?
-                if let nextRace = data["race"] as? [String : Any] {
-                    for racers in nextRace["racers"] as! [Any] {
-                        racerArray?.append(Racer(dictionary: racers as! [String : Any]))
-                    }
-                    completion(racerArray)
-                }
+                completion(Race(dictionary: data).racers)
             }
         })
     }

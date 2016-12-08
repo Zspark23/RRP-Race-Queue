@@ -9,27 +9,27 @@
 import UIKit
 
 class RaceDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var raceDetailsTableView: UITableView!
+    
     var racersArray: [Racer] = []
+    var race: Race = Race()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fillTableWithRacers()
     }
     
     func fillTableWithRacers() {
         NetworkController.sharedInstance.getRacersUpcomingRaceFor(track: 2, completion: { (racers) in
             DispatchQueue.main.async(execute: { () -> Void in
-                if let racers = racers {
-                    self.racersArray = racers
-                }
+                self.racersArray = racers
                 self.raceDetailsTableView.reloadData()
             })
         })
     }
-
+    
+    // MARK: Prepare for segue method
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
         let racerCell = sender as! UITableViewCell
