@@ -9,19 +9,26 @@
 import UIKit
 
 class RaceQueueViewController: UIViewController {
+    
+    var me: Racer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! RaceDetailViewController
-        let raceCell = sender as! UITableViewCell
-        
-        if let raceText = raceCell.textLabel?.text {
-            viewController.title = "\(raceText)"
+        if sender is UIBarButtonItem {
+            let navController = segue.destination as! UINavigationController
+            let viewController = navController.viewControllers.first as! RacerProfileViewController
+            viewController.racer = me
+        } else {
+            let viewController = segue.destination as! RaceDetailViewController
+            let raceCell = sender as! UITableViewCell
+            
+            if let raceText = raceCell.textLabel?.text {
+                viewController.title = "\(raceText)"
+            }
         }
     }
     

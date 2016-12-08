@@ -13,7 +13,7 @@
 		142C6FDA1DF205F100C5D269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142C6FD91DF205F100C5D269 /* Assets.xcassets */; };
 		142C6FDD1DF205F100C5D269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142C6FDB1DF205F100C5D269 /* LaunchScreen.storyboard */; };
 		143C84E11DF20DF8004285E2 /* RaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */; };
-		143C84E31DF22CD2004285E2 /* RacerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84E21DF22CD2004285E2 /* RacerDetailViewController.swift */; };
+		143C84E31DF22CD2004285E2 /* RacerProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84E21DF22CD2004285E2 /* RacerProfileViewController.swift */; };
 		143C84E51DF230DE004285E2 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84E41DF230DE004285E2 /* NetworkController.swift */; };
 		143C84EC1DF23359004285E2 /* Racer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84EB1DF23359004285E2 /* Racer.swift */; };
 		143C84F01DF2338C004285E2 /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C84EF1DF2338C004285E2 /* Race.swift */; };
@@ -28,7 +28,7 @@
 		142C6FDC1DF205F100C5D269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		142C6FDE1DF205F100C5D269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceDetailViewController.swift; sourceTree = "<group>"; };
-		143C84E21DF22CD2004285E2 /* RacerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacerDetailViewController.swift; sourceTree = "<group>"; };
+		143C84E21DF22CD2004285E2 /* RacerProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacerProfileViewController.swift; sourceTree = "<group>"; };
 		143C84E41DF230DE004285E2 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		143C84EB1DF23359004285E2 /* Racer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Racer.swift; sourceTree = "<group>"; };
 		143C84EF1DF2338C004285E2 /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 			children = (
 				142C6FD41DF205F100C5D269 /* RaceQueueViewController.swift */,
 				143C84E01DF20DF8004285E2 /* RaceDetailViewController.swift */,
-				143C84E21DF22CD2004285E2 /* RacerDetailViewController.swift */,
+				143C84E21DF22CD2004285E2 /* RacerProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 				143C84E51DF230DE004285E2 /* NetworkController.swift in Sources */,
 				143C84F01DF2338C004285E2 /* Race.swift in Sources */,
 				143C84E11DF20DF8004285E2 /* RaceDetailViewController.swift in Sources */,
-				143C84E31DF22CD2004285E2 /* RacerDetailViewController.swift in Sources */,
+				143C84E31DF22CD2004285E2 /* RacerProfileViewController.swift in Sources */,
 				142C6FD51DF205F100C5D269 /* RaceQueueViewController.swift in Sources */,
 				142C6FD31DF205F100C5D269 /* AppDelegate.swift in Sources */,
 				143C84EC1DF23359004285E2 /* Racer.swift in Sources */,

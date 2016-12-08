@@ -17,32 +17,57 @@ class NetworkController {
     
     
     private func baseURL() -> String {
-        return "http://aisbaltimore.clubspeedtiming.com/api/index.php/"
+        return "https://aisbaltimore.clubspeedtiming.com/api/index.php/"
     }
     
-    private func constructURLString(when: String, track: Int) -> String {
-        return "\(baseURL())races/\(when).json?track=\(track)&key=\(apiKey)"
+    // MARK: URL constructors
+    
+    // Constructs the URL for getting races
+    private func constructURL(when: String, track: Int) -> URL {
+        return URL(string:"\(baseURL())races/\(when).json?track=\(track)&key=\(apiKey)")!
     }
     
+    // Constructs the URL for getting people in the system with their Racer ID
+    private func constructURL(racerId: String) -> URL {
+        return URL(string:"\(baseURL())racers/\(racerId).json?key=\(apiKey)")!
+    }
+    
+    // MARK: Racer acquisition methods
+    
+    // Gets all racers in following race for specified track
     func getRacersUpcomingRaceFor(track: Int, completion: @escaping ([Racer]?) -> Void) {
-        let url = URL(string: constructURLString(when: "next", track: track))
+        let url = constructURL(when: "next", track: track)
         
-        performDataTask(url: url!, completion: { (json) in
+        performDataTask(url: url, completion: { (json) in
             if let data = json {
-                var racerArray: [Racer] = []
+                var racerArray: [Racer]?
                 if let nextRace = data["race"] as? [String : Any] {
                     for racers in nextRace["racers"] as! [Any] {
-                        racerArray.append(Racer(dictionary: racers as! [String : Any]))
+                        racerArray?.append(Racer(dictionary: racers as! [String : Any]))
                     }
                     completion(racerArray)
-                } else {
-                    completion(nil)
                 }
+            }
+        })
+    }
+    
+    func getRacerBy(id: String, completion: @escaping (Racer?) -> Void) {
+        let url = constructURL(racerId: id)
+        
+        performDataTask(url: url, completion: { (json) in
+            if let data = json {
+                var racer: Racer?
+                racer = Racer(dictionary: data)
             } else {
                 completion(nil)
             }
         })
+        
     }
+    
+    // MARK: Race acquisition methods
+    
+    // MARK: API call methods
     
     // Performs the API call
     private func performDataTask(url: URL, completion: @escaping (([String : Any]?) -> Void)) {

@@ -16,6 +16,10 @@ class RaceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fillTableWithRacers()
+    }
+    
+    func fillTableWithRacers() {
         NetworkController.sharedInstance.getRacersUpcomingRaceFor(track: 2, completion: { (racers) in
             DispatchQueue.main.async(execute: { () -> Void in
                 if let racers = racers {
@@ -24,7 +28,6 @@ class RaceDetailViewController: UIViewController {
                 self.raceDetailsTableView.reloadData()
             })
         })
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class RacerDetailViewController: UIViewController {
+class RacerProfileViewController: UIViewController {
+    
+    var racer: Racer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
