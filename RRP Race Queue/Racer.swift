@@ -20,7 +20,10 @@ class Racer {
     let fastestLap: String?
     let lastLap: String?
     let createdAtDate: String?
+    let numVisits: String?
+    let numRaces: String?
     
+    // Creates a blank racer with no values in any variable
     init() {
         racerId = nil
         finishPosition = nil
@@ -32,21 +35,36 @@ class Racer {
         fastestLap = nil
         lastLap = nil
         createdAtDate = nil
+        numVisits = nil
+        numRaces = nil
     }
     
+    // Creates a racer from a dictionary passed in (usually parsed JSON from an API call)
     init(dictionary: [String : Any]) {
         racerId = dictionary["id"] as? String ?? nil
         finishPosition = dictionary["position"] as? String ?? nil
         kartNum = dictionary["kart_num"] as? String ?? nil
-        racerName = dictionary["nickname"] as? String ?? nil
-        firstName = dictionary["first_name"] as? String ?? nil
-        lastName = dictionary["last_name"] as? String ?? nil
+        
+        if let name = dictionary["name"] as? [String : Any] {
+            racerName = name["nickname"] as? String ?? nil
+            firstName = name["first"] as? String ?? nil
+            lastName = name["last"] as? String ?? nil
+        } else {
+            racerName = dictionary["nickname"] as? String ?? nil
+            firstName = dictionary["first_name"] as? String ?? nil
+            lastName = dictionary["last_name"] as? String ?? nil
+        }
+        
         rpm = dictionary["rpm"] as? String ?? nil
         fastestLap = dictionary["fastest_lap_time"] as? String ?? nil
         lastLap = dictionary["last_lap_time"] as? String ?? nil
         createdAtDate = dictionary["created_at"] as? String ?? nil
+        numVisits = dictionary["visits"] as? String ?? nil
+        numRaces = dictionary["races"] as? String ?? nil
     }
     
+    // Returns the full name of the racer as an optional in case there is a problem getting 
+    // their first/last name
     func fullName() -> String? {
         return "\(firstName!) \(lastName!)"
     }
