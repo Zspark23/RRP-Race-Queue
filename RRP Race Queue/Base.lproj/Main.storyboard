@@ -71,6 +71,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="raceQueueTableView" destination="aMM-U2-czn" id="1iE-Kb-HLU"/>
                         <outlet property="trackSelectSegmentedControl" destination="iJ5-3w-kV5" id="zHn-Jq-ch6"/>
                     </connections>
                 </viewController>

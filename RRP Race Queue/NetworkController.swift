@@ -23,7 +23,7 @@ class NetworkController {
     // MARK: URL constructors-----------------------------------------------------------
     
     // Constructs the URL for getting races
-    private func constructURL(when: String, track: Int) -> URL {
+    private func constructURL(when: String, track: String) -> URL {
         return URL(string:"\(baseURL())races/\(when).json?track=\(track)&key=\(apiKey)")!
     }
     
@@ -48,12 +48,12 @@ class NetworkController {
     // MARK: Race acquisition methods---------------------------------------------------
     
     // Gets the upcoming race for the specified track
-    func getUpcomingRaceFor(track: Int, completion: @escaping ([Racer]) -> Void) {
+    func getUpcomingRaceFor(track: String, completion: @escaping (Race) -> Void) {
         let url = constructURL(when: "next", track: track)
         
         performDataTask(url: url, completion: { (json) in
             if let data = json {
-                completion(Race(dictionary: data["race"] as! [String : Any]).racers)
+                completion(Race(dictionary: data["race"] as! [String : Any]))
             }
         })
     }
