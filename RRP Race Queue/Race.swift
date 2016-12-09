@@ -62,9 +62,10 @@ class Race {
         raceNumber = dictionary["race_number"] as? String ?? nil
         racers = []
         
-        let tempRacersArray = dictionary["racers"] as? [String : Any] ?? nil
-        for r in tempRacersArray?["racers"] as! [Any] {
-            self.racers.append(Racer(dictionary: r as! [String : Any]))
+        if let tempRacersArray = dictionary["racers"] as? [Any] {
+            for r in tempRacersArray {
+                self.racers.append(Racer(dictionary: r as! [String : Any]))
+            }
         }
         
     }

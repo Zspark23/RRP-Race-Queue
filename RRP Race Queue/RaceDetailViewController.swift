@@ -18,10 +18,16 @@ class RaceDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillTableWithRacers()
+        
+        NetworkController.sharedInstance.getRacerBy(id: "1001228", completion: { (racer) in
+            DispatchQueue.main.async(execute: { () in
+                print(racer.fullName() ?? "No racer")
+            })
+        })
     }
     
     func fillTableWithRacers() {
-        NetworkController.sharedInstance.getRacersUpcomingRaceFor(track: 2, completion: { (racers) in
+        NetworkController.sharedInstance.getUpcomingRaceFor(track: 1, completion: { (racers) in
             DispatchQueue.main.async(execute: { () -> Void in
                 self.racersArray = racers
                 self.raceDetailsTableView.reloadData()

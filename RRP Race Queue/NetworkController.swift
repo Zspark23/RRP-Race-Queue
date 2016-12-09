@@ -20,7 +20,7 @@ class NetworkController {
         return "https://aisbaltimore.clubspeedtiming.com/api/index.php/"
     }
     
-    // MARK: URL constructors
+    // MARK: URL constructors-----------------------------------------------------------
     
     // Constructs the URL for getting races
     private func constructURL(when: String, track: Int) -> URL {
@@ -32,36 +32,33 @@ class NetworkController {
         return URL(string:"\(baseURL())racers/\(racerId).json?key=\(apiKey)")!
     }
     
-    // MARK: Racer acquisition methods
+    // MARK: Racer acquisition methods--------------------------------------------------
     
-    // Gets all racers in following race for specified track
-    func getRacersUpcomingRaceFor(track: Int, completion: @escaping ([Racer]) -> Void) {
-        let url = constructURL(when: "next", track: track)
-        
-        performDataTask(url: url, completion: { (json) in
-            if let data = json {
-                completion(Race(dictionary: data).racers)
-            }
-        })
-    }
-    
-    func getRacerBy(id: String, completion: @escaping (Racer?) -> Void) {
+    // Gets a single racer by their unique racer id
+    func getRacerBy(id: String, completion: @escaping (Racer) -> Void) {
         let url = constructURL(racerId: id)
         
         performDataTask(url: url, completion: { (json) in
             if let data = json {
-                var racer: Racer?
-                racer = Racer(dictionary: data)
-            } else {
-                completion(nil)
+                completion(Racer(dictionary: data["racer"] as! [String : Any]))
             }
         })
-        
     }
     
-    // MARK: Race acquisition methods
+    // MARK: Race acquisition methods---------------------------------------------------
     
-    // MARK: API call methods
+    // Gets the upcoming race for the specified track
+    func getUpcomingRaceFor(track: Int, completion: @escaping ([Racer]) -> Void) {
+        let url = constructURL(when: "next", track: track)
+        
+        performDataTask(url: url, completion: { (json) in
+            if let data = json {
+                completion(Race(dictionary: data["race"] as! [String : Any]).racers)
+            }
+        })
+    }
+    
+    // MARK: API call methods-----------------------------------------------------------
     
     // Performs the API call
     private func performDataTask(url: URL, completion: @escaping (([String : Any]?) -> Void)) {
@@ -79,28 +76,6 @@ class NetworkController {
                         completion(json)
                     } else {
                         completion(nil)
-                    }
-                } catch {
-                    print("error in JSONSerialization")
-                }
-            }
-        })
-        task.resume()
-    }
-    
-    private func testPerformDataTask(completion: @escaping (([String : Any]) -> Void)) {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let task = session.dataTask(with: URL(string: "\(baseURL())racers/search.json?query=Baby%20Spice&key=\(apiKey)")!, completionHandler: {
-            (data, response, error) in
-            
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String : Any]
-                    {
-                        completion(json)
                     }
                 } catch {
                     print("error in JSONSerialization")
