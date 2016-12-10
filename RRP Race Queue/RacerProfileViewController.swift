@@ -10,11 +10,19 @@ import UIKit
 
 class RacerProfileViewController: UIViewController {
     
-    var racer: Racer?
+    @IBOutlet weak var profilePictureImageView: UIImageView!
+    
+    var me: Racer = Racer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = me.fullName()
+    
+        do {
+        try profilePictureImageView.image = UIImage(data: Data(contentsOf: URL(string: "http://aisbaltimore.clubspeedtiming.com/CustomerPictures/\(me.racerId!).jpg")!))
+        } catch {
+            print("Error getting picture")
+        }
     }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {

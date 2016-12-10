@@ -24,6 +24,7 @@ class Race {
     let raceName: String?
     let startsAtIso: String?
     let raceNumber: String?
+    let totalSpots: String?
     var racers: [Racer]
     
     init() {
@@ -41,6 +42,7 @@ class Race {
         raceName = nil
         startsAtIso = nil
         raceNumber = nil
+        totalSpots = nil
         racers = []
     }
     
@@ -60,6 +62,7 @@ class Race {
         raceName = dictionary["race_name"] as? String ?? nil
         startsAtIso = dictionary["starts_at_iso"] as? String ?? nil
         raceNumber = dictionary["race_number"] as? String ?? nil
+        totalSpots = dictionary["total_spots"] as? String ?? nil
         racers = []
         
         if let tempRacersArray = dictionary["racers"] as? [Any] {

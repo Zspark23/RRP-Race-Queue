@@ -12,27 +12,22 @@ class RaceDetailViewController: UIViewController {
     
     @IBOutlet weak var raceDetailsTableView: UITableView!
     
-    var racersArray: [Racer] = []
     var race: Race = Race()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillTableWithRacers()
-    }
-    
-    func fillTableWithRacers() {
-        NetworkController.sharedInstance.getUpcomingRaceFor(track: "1", completion: { (race) in
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.racersArray = race.racers
-                self.raceDetailsTableView.reloadData()
-            })
-        })
+        self.title = race.raceName!
+        
     }
     
     // MARK: Prepare for segue method
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
-        let racerCell = sender as! UITableViewCell
+        let viewController = navController.viewControllers.first as! RacerProfileViewController
+        let racerCellIndexPath = sender as! IndexPath
+        let racerCell = tableView(self.raceDetailsTableView, cellForRowAt: racerCellIndexPath)
+        
+        viewController.me = race.racers[racerCellIndexPath.row]
         
         if let racerCellTitle = racerCell.textLabel?.text {
             navController.viewControllers.first?.title = racerCellTitle
@@ -48,12 +43,12 @@ extension RaceDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "racerCell", for: indexPath)
-        cell.textLabel?.text = racersArray[indexPath.row].fullName()
+        cell.textLabel?.text = race.racers[indexPath.row].fullName()
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return racersArray.count
+        return race.racers.count
     }
     
     // MARK: UITableViewDataSource Method(s)
@@ -63,8 +58,7 @@ extension RaceDetailViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        performSegue(withIdentifier: "viewRacerDetailsSegue", sender: cell)
+        performSegue(withIdentifier: "viewRacerDetailsSegue", sender: indexPath)
     }
     
 }

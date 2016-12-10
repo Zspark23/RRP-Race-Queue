@@ -14,37 +14,63 @@ class RaceQueueViewController: UIViewController {
     @IBOutlet weak var raceQueueTableView: UITableView!
     
     var me: Racer?
+    var upcomingRaces: [Race] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fillTableWithRacers()
-        print("\(trackSelectSegmentedControl.)")
+        showAllScheduledRacesFor(track: "2")
+        assignMe()
     }
     
-    func showUpcomingRaceInTable() {
-        //let trackNum = trackSelectSegmentedControl.
-        NetworkController.sharedInstance.getUpcomingRaceFor(track: "1", completion: { (race) in
+    // Gets all the scheduled races for the selected track and reloads the table view
+    func showAllScheduledRacesFor(track: String) {
+        NetworkController.sharedInstance.getAllUpcomingRacesFor(track: track, completion: { (races) in
             DispatchQueue.main.async(execute: { () -> Void in
-                
+                self.upcomingRaces = races
+                self.raceQueueTableView.reloadData()
             })
         })
     }
+    
+    // Assigns the me variable to the person currently logged in (Hard coded for development)
+    func assignMe() {
+        NetworkController.sharedInstance.getRacerBy(id: "1001228", completion: { (racer) in
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.me = racer
+            })
+        })
+    }
+    
+    // Action for segmented control triggered when the user clicks a different segment
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
+        upcomingRaces = []
+        raceQueueTableView.reloadData()
+        
+        switch trackSelectSegmentedControl.selectedSegmentIndex {
+        case 0:
+            showAllScheduledRacesFor(track: "2")
+        case 1:
+            showAllScheduledRacesFor(track: "1")
+        default:
+            break
+        }
+    }
+    
+    // MARK: Prepare for segue method---------------------------------------------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if sender is UIBarButtonItem {
             let navController = segue.destination as! UINavigationController
             let viewController = navController.viewControllers.first as! RacerProfileViewController
-            viewController.racer = me
+            if let me = self.me {
+                viewController.me = me
+            }
         } else {
             let viewController = segue.destination as! RaceDetailViewController
-            let raceCell = sender as! UITableViewCell
-            
-            if let raceText = raceCell.textLabel?.text {
-                viewController.title = "\(raceText)"
-            }
+            viewController.race = nextRace!
         }
     }
-    
 }
 
 extension RaceQueueViewController: UITableViewDataSource, UITableViewDelegate {
@@ -53,12 +79,12 @@ extension RaceQueueViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "raceCell", for: indexPath)
-        cell.textLabel?.text = "Race \(indexPath.row + 1)"
+        cell.textLabel?.text = "Race #" + (upcomingRaces[indexPath.row].raceNumber)! + ": " + (upcomingRaces[indexPath.row].raceName)!
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return upcomingRaces.count
     }
     
     // MARK: UITableViewDelegate Method(s)----------------------------------------------------------
