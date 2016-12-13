@@ -59,8 +59,8 @@ class Racer {
         fastestLap = dictionary["fastest_lap_time"] as? String ?? nil
         lastLap = dictionary["last_lap_time"] as? String ?? nil
         createdAtDate = dictionary["created_at"] as? String ?? nil
-        numVisits = dictionary["visits"] as? String ?? nil
-        numRaces = dictionary["races"] as? String ?? nil
+        numVisits = dictionary["visits"] as? String ?? dictionary["total_visits"] as? String ?? nil
+        numRaces = dictionary["races"] as? String ?? dictionary["total_races"] as? String ?? nil
     }
     
     // Returns the full name of the racer as an optional in case there is a problem getting 

@@ -14,6 +14,7 @@ class RaceQueueViewController: UIViewController {
     @IBOutlet weak var raceQueueTableView: UITableView!
     
     var me: Racer?
+    var selectedRace: Race?
     var upcomingRaces: [Race] = []
     
 
@@ -68,7 +69,7 @@ class RaceQueueViewController: UIViewController {
             }
         } else {
             let viewController = segue.destination as! RaceDetailViewController
-            viewController.race = nextRace!
+            viewController.race = selectedRace!
         }
     }
 }
@@ -91,6 +92,8 @@ extension RaceQueueViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedRace = upcomingRaces[indexPath.row]
+        performSegue(withIdentifier: "raceDetailViewControllerSegue", sender: indexPath)
     }
     
 }
