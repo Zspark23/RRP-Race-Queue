@@ -66,6 +66,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Race Queue" id="ddz-Dz-3qm">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="UIK-Gp-pWo"/>
                         <barButtonItem key="rightBarButtonItem" tag="1" image="Circled User Male Filled-25" id="so0-4h-DYE">
                             <connections>
                                 <segue destination="oac-Bz-c8u" kind="showDetail" id="VLE-66-ObI"/>

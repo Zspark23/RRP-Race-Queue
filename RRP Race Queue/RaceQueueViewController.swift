@@ -13,15 +13,20 @@ class RaceQueueViewController: UIViewController {
     @IBOutlet weak var trackSelectSegmentedControl: UISegmentedControl!
     @IBOutlet weak var raceQueueTableView: UITableView!
     
-    var me: Racer?
-    var selectedRace: Race?
-    var upcomingRaces: [Race] = []
+    var me: Racer? // The racer that is currently logged in (Hard coded for testing)
+    var selectedRace: Race? // The race that was tapped in the table view
+    var upcomingRaces: [Race] = [] // All of the schedules races for the selected track
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAllScheduledRacesFor(track: "2")
         assignMe()
+        NotificationCenter.default.addObserver(self, selector: #selector(indexChanged(_:)), name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        indexChanged(trackSelectSegmentedControl)
     }
     
     // Gets all the scheduled races for the selected track and reloads the table view
